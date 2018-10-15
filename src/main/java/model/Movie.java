@@ -1,3 +1,7 @@
+package model;
+
+import model.Actor;
+
 import java.util.Date;
 import java.util.List;
 
