@@ -1,5 +1,7 @@
 package controller;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import model.Actor;
 import model.Director;
@@ -20,14 +22,12 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
+import java.util.*;
 import java.util.List;
-import java.util.Scanner;
 
 public class Main {
 
-     public static void main(String[] args) throws Exception {
+     public static void main(String[] args) throws IOException, Exception {
         Provider provider;
         Scanner scanner = new Scanner(System.in);
         List<Movie> movies = new ArrayList<Movie>();
@@ -36,13 +36,31 @@ public class Main {
             readMenu();
             movieMenu = MovieMenu.valueOf(scanner.next());
             switch (movieMenu) {
+                case Z:
+                    break;
                 case A:
                     provider=new XMLprovider();
                     provider.readFile(movies);
                     break;
                 case B:
-                    provider=new JSONprovider();
-                    provider.readFile(movies);
+                    Movie[] movies1;
+                    ArrayList<Movie> library;
+                    File file = new File("src\\main\\resources\\files\\MoviesJSON.json");
+                    ObjectMapper mapper = new ObjectMapper();
+                    mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+                    library = new ArrayList<Movie>(Arrays.asList(mapper.readValue(file, Movie[].class)));
+//
+// provider=new JSONprovider();
+//                    provider.readFile(movies);
+//                    public static void main(String[] args) throws IOException {
+//        Movie[] movies;
+//        ArrayList<Movie> library;
+//        File file = new File("src\\main\\resources\\MoviesJSON.json");
+//        ObjectMapper mapper = new ObjectMapper();
+//        mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+//        library = new ArrayList<Movie>(Arrays.asList(mapper.readValue(file, Movie[].class)));
+//    }
+
                     break;
                 case C:
                     MenuOptions.genreSearch(movies);

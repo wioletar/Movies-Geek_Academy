@@ -1,5 +1,6 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import model.Actor;
 
 import java.util.Date;
@@ -9,9 +10,11 @@ public class Movie {
 
     private String title;
     private Director director;
+   // @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy");
     private Date dateOfProduction;
     private String genre;
     private List<Actor> listOfActors;
+  //  private Object shape;
 
     public Movie() {
     }

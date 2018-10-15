@@ -1,5 +1,6 @@
-package repository;
+//package repository;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.*;
 import model.Movie;
@@ -13,8 +14,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
 
-public class JSONprovider implements Provider {
-
+//public class JSONprovider implements Provider {
+//
 
 //    public T deserializeFromJson(File jsonFile) {
 //        T object = null;
@@ -28,24 +29,32 @@ public class JSONprovider implements Provider {
 //        return object;
 //    }
 
+//    public static void main(String[] args) throws IOException {
+//        Movie[] movies;
+//        ArrayList<Movie> library;
+//        File file = new File("src\\main\\resources\\MoviesJSON.json");
+//        ObjectMapper mapper = new ObjectMapper();
+//        mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+//        library = new ArrayList<Movie>(Arrays.asList(mapper.readValue(file, Movie[].class)));
+//    }
 
-
-    public void readFile(List<Movie> movies) throws Exception {
-
-        File file = new File("src\\main\\resources\\files\\MoviesJSON.json");
-
-        Movie[] movie1=null;
-        ObjectMapper mapper = new ObjectMapper();
-        try{
-
-            movie1=mapper.readValue(file, Movie[].class);
-            for (Movie movie : movie1) {
-                System.out.println(movie);
-                movies.add(movie);
-            }
-        }catch (IOException e) {
-            e.printStackTrace();
-        }
+//    public void readFile(List<Movie> movies) throws IOException {
+//        Movie[] movies;
+//        File file = new File("src\\main\\resources\\files\\MoviesJSON.json");
+//        ObjectMapper mapper = new ObjectMapper();
+//        mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+//
+//
+//        try{
+//
+//            movie1=mapper.readValue(file, Movie[].class);
+//            for (Movie movie : movie1) {
+//                System.out.println(movie);
+//                movies.add(movie);
+//            }
+//        }catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
         //        ObjectMapper mapper = new ObjectMapper();
 //         Movie[] json = mapper.readValue(file, Movie[].class);
@@ -60,20 +69,20 @@ public class JSONprovider implements Provider {
 //            System.out.println(movie);
 //           //movies.add(movie);
 //        }
-    }
-    //  metoda wczytującą plik tekstowy i zwracającą go w postaci łańcucha znaków:
-    private static String readJson(String path) throws IOException {
-        StringBuilder builder = new StringBuilder();
-        String text;
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(path));
-            while ((text = reader.readLine()) != null) {
-                builder.append(text);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return builder.toString();
-    }
-
-}
+//    }
+//    //  metoda wczytującą plik tekstowy i zwracającą go w postaci łańcucha znaków:
+//    private static String readJson(String path) throws IOException {
+//        StringBuilder builder = new StringBuilder();
+//        String text;
+//        try {
+//            BufferedReader reader = new BufferedReader(new FileReader(path));
+//            while ((text = reader.readLine()) != null) {
+//                builder.append(text);
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        return builder.toString();
+//    }
+//
+//}
