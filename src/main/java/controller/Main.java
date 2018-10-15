@@ -29,7 +29,6 @@ public class Main {
 
      public static void main(String[] args) throws Exception {
         Provider provider;
-
         Scanner scanner = new Scanner(System.in);
         List<Movie> movies = new ArrayList<Movie>();
         MovieMenu movieMenu = MovieMenu.Z;
@@ -80,34 +79,5 @@ public class Main {
         System.out.println("G-wyjście");
         System.out.println("Podaj literę z menu ");
     }
-
-//    private static void readJSONFile(List<Movie> movies) throws Exception {
-//        Gson gson = new Gson();
-//        String input = readJson("src\\main\\resources\\files\\MoviesJSON.json");
-//        Movie[] jsonMovies = gson.fromJson(input, Movie[].class);
-//        for (Movie movie : jsonMovies) {
-//            System.out.println(movie);
-//            movies.add(movie);
-//        }
-//        // serializacja na JSONa
-//        // System.out.println(gson.toJson(movies));
-//    }
-//
-//
-//    // metoda wczytującą plik tekstowy i zwracającą go w postaci łańcucha znaków:
-//    private static String readJson(String path) throws Exception {
-//        StringBuilder builder = new StringBuilder();
-//
-//        String text;
-//        try {
-//            BufferedReader reader = new BufferedReader(new FileReader(path));
-//            while ((text = reader.readLine()) != null) {
-//                builder.append(text);
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        return builder.toString();
-//    }
 
 }

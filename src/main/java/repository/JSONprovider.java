@@ -1,11 +1,10 @@
 package repository;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.*;
 import model.Movie;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.lang.reflect.Type;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -17,19 +16,53 @@ import java.util.TimeZone;
 public class JSONprovider implements Provider {
 
 
+//    public T deserializeFromJson(File jsonFile) {
+//        T object = null;
+//
+//        try {
+//            object = OBJECT_MAPPER.readValue(jsonFile, objectType);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//
+//        return object;
+//    }
+
+
+
     public void readFile(List<Movie> movies) throws Exception {
-        Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").create();
-        String input = readJson("src\\main\\resources\\files\\MoviesJSON.json");
-        Movie[] json = gson.fromJson(input, Movie[].class);
 
-        for (Movie movie : json) {
-            System.out.println(movie);
-            movies.add(movie);
+        File file = new File("src\\main\\resources\\files\\MoviesJSON.json");
+
+        Movie[] movie1=null;
+        ObjectMapper mapper = new ObjectMapper();
+        try{
+
+            movie1=mapper.readValue(file, Movie[].class);
+            for (Movie movie : movie1) {
+                System.out.println(movie);
+                movies.add(movie);
+            }
+        }catch (IOException e) {
+            e.printStackTrace();
         }
-    }
 
-   //  metoda wczytującą plik tekstowy i zwracającą go w postaci łańcucha znaków:
-    private static String readJson(String path) throws Exception {
+        //        ObjectMapper mapper = new ObjectMapper();
+//         Movie[] json = mapper.readValue(file, Movie[].class);
+
+
+
+   // Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").create();
+//        String input = readJson("src\\main\\resources\\files\\MoviesJSON.json");
+//        Movie[] json = gson.fromJson(input, Movie[].class);
+
+//        for (Movie movie : json) {
+//            System.out.println(movie);
+//           //movies.add(movie);
+//        }
+    }
+    //  metoda wczytującą plik tekstowy i zwracającą go w postaci łańcucha znaków:
+    private static String readJson(String path) throws IOException {
         StringBuilder builder = new StringBuilder();
         String text;
         try {
@@ -42,11 +75,5 @@ public class JSONprovider implements Provider {
         }
         return builder.toString();
     }
+
 }
-// serializacja na JSONa
-// System.out.println(gson.toJson(movies));
-//  Gson gson = new Gson();
-//        Date myDate = new Date();
-//      //  System.out.println("JSON : " + gson.toJson(myDate));
-//        myDate = gson.fromJson("\"Apr 12, 2012 11:56:04 AM\"", Date.class);
-//        System.out.println("Date : " + myDate);
