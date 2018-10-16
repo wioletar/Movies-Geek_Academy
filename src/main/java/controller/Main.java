@@ -1,27 +1,8 @@
 package controller;
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.Gson;
-import model.Actor;
-import model.Director;
 import model.Movie;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 import repository.*;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import java.awt.*;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.List;
 
@@ -43,24 +24,8 @@ public class Main {
                     provider.readFile(movies);
                     break;
                 case B:
-                    Movie[] movies1;
-                    ArrayList<Movie> library;
-                    File file = new File("src\\main\\resources\\files\\MoviesJSON.json");
-                    ObjectMapper mapper = new ObjectMapper();
-                    mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
-                    library = new ArrayList<Movie>(Arrays.asList(mapper.readValue(file, Movie[].class)));
-//
-// provider=new JSONprovider();
-//                    provider.readFile(movies);
-//                    public static void main(String[] args) throws IOException {
-//        Movie[] movies;
-//        ArrayList<Movie> library;
-//        File file = new File("src\\main\\resources\\MoviesJSON.json");
-//        ObjectMapper mapper = new ObjectMapper();
-//        mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
-//        library = new ArrayList<Movie>(Arrays.asList(mapper.readValue(file, Movie[].class)));
-//    }
-
+                    provider=new JSONprovider();
+                    provider.readFile(movies);
                     break;
                 case C:
                     MenuOptions.genreSearch(movies);
@@ -81,9 +46,7 @@ public class Main {
                     break;
             }
         }
-
     }
-
 
     public static void readMenu() {
         System.out.println("\n");
@@ -97,5 +60,4 @@ public class Main {
         System.out.println("G-wyjście");
         System.out.println("Podaj literę z menu ");
     }
-
 }
